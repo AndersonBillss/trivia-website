@@ -1,0 +1,4 @@
+<h1>Select a Question</h1>
+<div *ngFor="let item of categories" [routerLink]="'/questions/' + item.title">
+    {{item.title}}
+</div>
