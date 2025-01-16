@@ -1,25 +1,40 @@
-<div (click)="goBack()">back</div>
-<h1>{{category?category.title:"loading"}}</h1>
-<div *ngIf="!question">loading...</div>
-<div *ngIf="question">
-    <h3 [innerHTML]="question.question"></h3>
-    <div *ngFor="let index of questionOrder">
-        <div 
-        *ngIf="index === 0" 
-        [ngClass]="correctAnswerRevealed?'correct-revealed':''"
-        (click)="correctAnswerRevealed ? '' : guessCorrect()"
-        [innerHtml]="question.correct_answer"
-        >
-        </div>
-        <div 
-        *ngIf="index !== 0" (click)="correctAnswerRevealed ? '' : guessIncorrect()"
-        [innerHtml]="question.incorrect_answers[index-1]"
-        >
-        </div>
-    </div>
-
+<div class="center-col">
+    <button class="back button" (click)="goBack()">Back</button>
+    <h2>{{category?category.title:"loading"}}</h2>
+    <div *ngIf="!question">loading...</div>
     <div 
-    *ngIf="correctAnswerRevealed"
-    (click)="nextQuestion()"
-    >Next Question</div>
+    *ngIf="question"
+    class="center-col"
+    >
+        <h1 
+        class="title"
+        [innerHTML]="question.question"
+        ></h1>
+        <div 
+        *ngFor="let index of questionOrder"
+        >
+            <button
+            class="button" 
+            *ngIf="index === 0" 
+            [ngClass]="correctAnswerRevealed?'correct-revealed':''"
+            (click)="correctAnswerRevealed ? '' : guessCorrect()"
+            [innerHtml]="question.correct_answer"
+            >
+            </button>
+            <button 
+            class="button"
+            *ngIf="index !== 0" (click)="correctAnswerRevealed ? '' : guessIncorrect()"
+            [innerHtml]="question.incorrect_answers[index-1]"
+            >
+            </button>
+        </div>
+
+        <button 
+        class="bottom button"
+        [ngClass]="correctAnswerRevealed?'next button':'back button'"
+        (click)="nextQuestion()"
+        >
+        {{correctAnswerRevealed?"Next Question":"Skip Question"}}
+        </button>
+    </div>
 </div>

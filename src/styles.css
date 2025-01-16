@@ -1,5 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
-body, html{
+:root{
+    --primary-light: rgb(215, 217, 255);
+    --primary-dark: rgb(37, 41, 124);
+    --secondary-light: orange;
+    --secondary-dark: orange;
+
+    --correct-color: rgb(122, 222, 122);
+
+    --lightgray: rgb(219, 222, 227);
+}
+
+body{
     height: 100%;
     font-family: sans-serif;
+}
+.center-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button{
+    border: none;
+    background-color: var(--primary-light);
+    padding: 10px 20px;
+    font-size: 24px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: filter .1s, background-color .1s, color .1s;
+}
+.button:hover{
+    cursor: pointer;
+    filter: brightness(90%);
+}
+.button:active{
+    filter: brightness(80%);
+}
+
+.next.button{
+    background-color: var(--primary-dark);
+    color: var(--lightgray);
+}
+.back.button{
+    background-color: var(--lightgray);
 }

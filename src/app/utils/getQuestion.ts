@@ -34,6 +34,6 @@ function delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export async function getQuestionFromHardcoded(category: string): Promise<iQuestion | null>{
+export function getQuestionFromHardcoded(category: string): iQuestion | null{
     return null
 }

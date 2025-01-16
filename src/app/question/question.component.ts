@@ -3,7 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { iCategory, iQuestion } from '../app';
 import { categoriesList } from '../utils/categoriesList';
-import { getQuestionFromApi } from '../utils/getQuestion';
+import { getQuestionFromApi, getQuestionFromHardcoded } from '../utils/getQuestion';
 
 @Component({
   selector: 'app-question',
@@ -52,6 +52,9 @@ export class QuestionComponent implements OnInit {
     if(this.category.questionType === "API"){
       this.question = await getQuestionFromApi(this.category.categoryId)
     }
+    if(this.category.questionType === "Hardcoded"){
+      this.question = getQuestionFromHardcoded(this.category.categoryId)
+    }
     if(!this.question){
       return
     }
@@ -84,12 +87,10 @@ export class QuestionComponent implements OnInit {
   }
 
   guessCorrect(){
-    console.log("correct!")
     this.correctAnswerRevealed = true
   }
 
   guessIncorrect(){
-    console.log("incorrect")
     this.correctAnswerRevealed = true
   }
 

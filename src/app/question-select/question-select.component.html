@@ -1,4 +1,9 @@
-<h1>Select a Question</h1>
-<div *ngFor="let item of categories" [routerLink]="'/questions/' + item.title">
-    {{item.title}}
+<div class="center-col">
+    <h1>Select a Category</h1>
+    <button 
+    class="button"
+    *ngFor="let item of categories" [routerLink]="'/questions/' + item.title"
+    >
+        {{item.title}}
+    </button>
 </div>

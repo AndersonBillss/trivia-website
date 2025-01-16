@@ -1,3 +1,12 @@
 .correct-revealed{
-    background-color: green;
+    background-color: var(--correct-color);
+}
+
+.bottom.button{
+    margin-top: 15px;
+}
+
+.title{
+    max-width: 50%;
+    text-align: center;
 }
