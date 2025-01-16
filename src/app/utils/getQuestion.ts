@@ -3,9 +3,20 @@ import { iQuestion } from "../app"
 
 const triviaApiUrl = "https://opentdb.com/api.php?amount=1&category="
 
+const timeBeforeCallingAgain = 5000
+
+let lastApiCallTime = 0
+
 export async function getQuestionFromApi(category: number): Promise<iQuestion>{
+    const now = Date.now();
+    const elapsedTime = now - lastApiCallTime;
+    const waitTime = Math.max(timeBeforeCallingAgain - elapsedTime, 0); 
+    if (waitTime > 0) {
+        await delay(waitTime); // Wait for the remaining time
+    }
+
     const url = triviaApiUrl + category
-    console.log(url)
+
     let apiResponse: any = null
     await fetch(url).then((response: any) => {
         return response.json()
@@ -15,9 +26,14 @@ export async function getQuestionFromApi(category: number): Promise<iQuestion>{
     if(!apiResponse?.results){
         throw Error("response had no results")
     }
+    lastApiCallTime = Date.now()
     return apiResponse.results[0] as iQuestion
 }
 
-export async function getQuestionFromCache(category: string): Promise<iQuestion | null>{
+function delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export async function getQuestionFromHardcoded(category: string): Promise<iQuestion | null>{
     return null
 }

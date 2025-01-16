@@ -1,2 +1,25 @@
 <div (click)="goBack()">back</div>
 <h1>{{category?category.title:"loading"}}</h1>
+<div *ngIf="!question">loading...</div>
+<div *ngIf="question">
+    <h3 [innerHTML]="question.question"></h3>
+    <div *ngFor="let index of questionOrder">
+        <div 
+        *ngIf="index === 0" 
+        [ngClass]="correctAnswerRevealed?'correct-revealed':''"
+        (click)="correctAnswerRevealed ? '' : guessCorrect()"
+        [innerHtml]="question.correct_answer"
+        >
+        </div>
+        <div 
+        *ngIf="index !== 0" (click)="correctAnswerRevealed ? '' : guessIncorrect()"
+        [innerHtml]="question.incorrect_answers[index-1]"
+        >
+        </div>
+    </div>
+
+    <div 
+    *ngIf="correctAnswerRevealed"
+    (click)="nextQuestion()"
+    >Next Question</div>
+</div>

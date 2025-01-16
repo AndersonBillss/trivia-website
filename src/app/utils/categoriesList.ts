@@ -1,4 +1,4 @@
-import { getQuestionFromApi, getQuestionFromCache } from './getQuestion';
+import { getQuestionFromApi, getQuestionFromHardcoded } from './getQuestion';
 import { iCategory } from '../app'
 
 export const categoriesList: iCategory[] =[
@@ -12,18 +12,18 @@ export const categoriesList: iCategory[] =[
     },
     {
       title: "Geography",
-      getQuestionsFunction: async() => getQuestionFromCache("")
+      getQuestionsFunction: async() => getQuestionFromHardcoded("")
     },
     {
       title: "BYU",
-      getQuestionsFunction: async() => getQuestionFromCache("")
+      getQuestionsFunction: async() => getQuestionFromHardcoded("")
     },
     {
       title: "Culture",
-      getQuestionsFunction: async() => getQuestionFromCache("")
+      getQuestionsFunction: async() => getQuestionFromHardcoded("")
     },
     {
       title: "Test",
-      getQuestionsFunction: async() => getQuestionFromCache("")
+      getQuestionsFunction: async() => getQuestionFromHardcoded("")
     },
   ]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { iCategory, iQuestion } from '../app';
 import { categoriesList } from '../utils/categoriesList';
@@ -7,19 +7,25 @@ import { categoriesList } from '../utils/categoriesList';
 @Component({
   selector: 'app-question',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'
 })
 export class QuestionComponent implements OnInit {
+  public correctAnswerRevealed = false
   public category: iCategory | null = null
   public question: iQuestion | null = null
+  public questionOrder: number[] = []
+
   constructor(
     private route: ActivatedRoute,
     private location: Location
   ){}
 
   ngOnInit(): void {
+    this.category = null
     const categoryType = this.route.snapshot.paramMap.get("id")
     if(!categoryType){
       return
@@ -29,6 +35,7 @@ export class QuestionComponent implements OnInit {
       return
     }
     this.category = foundCategory
+    console.log(this.category.getQuestionsFunction)
 
     this.getQuestion()
   }
@@ -38,7 +45,51 @@ export class QuestionComponent implements OnInit {
       return
     }
     this.question = await this.category.getQuestionsFunction()
-    console.log("api response: ",this.question)
+    if(!this.question){
+      return
+    }
+    const numQuestions = this.question.incorrect_answers.length + 1
+    this.questionOrder = this.createRandomList(0,numQuestions)
+  }
+
+  createRandomList(num1: number, num2: number): number[]{
+    const randomList: number[] = []
+    const listLen = num2 - num1
+    for(let i=0; i<listLen; i++){
+      randomList.push(Math.random())
+    }
+    for(let i=0; i<listLen; i++){
+      let smallNum = 1
+      let smallNumIndex = -1
+      for(let i=0; i<listLen; i++){
+        const item = randomList[i]
+        if(item < smallNum){
+          smallNum = item
+          smallNumIndex = i
+        }
+      }
+      randomList[smallNumIndex] = i+1
+    }
+    for(let i=0; i<listLen; i++){
+      randomList[i]--
+    }
+    return randomList
+  }
+
+  guessCorrect(){
+    console.log("correct!")
+    this.correctAnswerRevealed = true
+  }
+
+  guessIncorrect(){
+    console.log("incorrect")
+    this.correctAnswerRevealed = true
+  }
+
+  nextQuestion(){
+    this.correctAnswerRevealed = false
+    this.question = null
+    this.getQuestion()
   }
 
   goBack(){
