@@ -14,10 +14,6 @@ import { categoriesList } from '../utils/categoriesList';
   templateUrl: './question-select.component.html',
   styleUrl: './question-select.component.css'
 })
-export class QuestionSelectComponent implements OnInit{
+export class QuestionSelectComponent{
   public categories: iCategory[] = categoriesList
-  ngOnInit(): void {
-    this.categories = categoriesList
-    console.log(this.categories)
-  }
 }

@@ -1,9 +1,8 @@
 export interface iCategory{
     title: string,
-    getQuestionsFunction: iQuestionFunction
+    questionType: string,
+    categoryId: string
 }
-
-type iQuestionFunction = () => Promise<iQuestion | null>;
 
 export interface iQuestion{
     category: string

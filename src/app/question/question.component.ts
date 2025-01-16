@@ -3,6 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { iCategory, iQuestion } from '../app';
 import { categoriesList } from '../utils/categoriesList';
+import { getQuestionFromApi } from '../utils/getQuestion';
 
 @Component({
   selector: 'app-question',
@@ -30,12 +31,16 @@ export class QuestionComponent implements OnInit {
     if(!categoryType){
       return
     }
-    const foundCategory = categoriesList.find(c => c.title = categoryType)
+    let foundCategory = null
+    categoriesList.forEach(item => {
+      if(item.title === categoryType){
+        foundCategory = item
+      }
+    })
     if(!foundCategory){
       return
     }
     this.category = foundCategory
-    console.log(this.category.getQuestionsFunction)
 
     this.getQuestion()
   }
@@ -44,7 +49,9 @@ export class QuestionComponent implements OnInit {
     if(!this.category){
       return
     }
-    this.question = await this.category.getQuestionsFunction()
+    if(this.category.questionType === "API"){
+      this.question = await getQuestionFromApi(this.category.categoryId)
+    }
     if(!this.question){
       return
     }

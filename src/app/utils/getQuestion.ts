@@ -7,7 +7,7 @@ const timeBeforeCallingAgain = 5000
 
 let lastApiCallTime = 0
 
-export async function getQuestionFromApi(category: number): Promise<iQuestion>{
+export async function getQuestionFromApi(category: string): Promise<iQuestion>{
     const now = Date.now();
     const elapsedTime = now - lastApiCallTime;
     const waitTime = Math.max(timeBeforeCallingAgain - elapsedTime, 0); 

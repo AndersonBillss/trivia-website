@@ -1,29 +1,34 @@
-import { getQuestionFromApi, getQuestionFromHardcoded } from './getQuestion';
 import { iCategory } from '../app'
 
 export const categoriesList: iCategory[] =[
     {
       title: "Science and Nature",
-      getQuestionsFunction: async() => await getQuestionFromApi(17)
+      questionType: "API",
+      categoryId: '17'
     },
     {
       title: "History",
-      getQuestionsFunction: async() => await getQuestionFromApi(23)
+      questionType: "API",
+      categoryId: '23'
     },
     {
       title: "Geography",
-      getQuestionsFunction: async() => getQuestionFromHardcoded("")
+      questionType: "API",
+      categoryId: '22'
     },
     {
       title: "BYU",
-      getQuestionsFunction: async() => getQuestionFromHardcoded("")
+      questionType: "Hardcoded",
+      categoryId: ''
     },
     {
       title: "Culture",
-      getQuestionsFunction: async() => getQuestionFromHardcoded("")
+      questionType: "Hardcoded",
+      categoryId: ''
     },
     {
       title: "Test",
-      getQuestionsFunction: async() => getQuestionFromHardcoded("")
+      questionType: "Hardcoded",
+      categoryId: ''
     },
   ]
