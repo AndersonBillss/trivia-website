@@ -53,6 +53,9 @@ export class QuestionComponent implements OnInit {
       this.question = await getQuestionFromApi(this.category.categoryId)
     }
     if(this.category.questionType === "Hardcoded"){
+      if(Array.isArray(this.category.categoryId)){
+        throw Error("Categories that are hardcoded should have string question types")
+      }
       this.question = getQuestionFromHardcoded(this.category.categoryId)
     }
     if(!this.question){

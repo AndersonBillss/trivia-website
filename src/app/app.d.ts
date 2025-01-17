@@ -1,7 +1,7 @@
 export interface iCategory{
     title: string,
     questionType: string,
-    categoryId: string
+    categoryId: string | string[]
 }
 
 export interface iQuestion{

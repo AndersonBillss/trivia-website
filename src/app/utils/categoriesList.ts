@@ -17,12 +17,17 @@ export const categoriesList: iCategory[] =[
       categoryId: '22'
     },
     {
-      title: "BYU",
-      questionType: "Hardcoded",
-      categoryId: ''
+      title: "Sports",
+      questionType: "API",
+      categoryId:"21"
     },
     {
       title: "Culture",
+      questionType: "API",
+      categoryId: ["11","12","13","14","16"]
+    },
+    {
+      title: "BYU",
       questionType: "Hardcoded",
       categoryId: ''
     },
