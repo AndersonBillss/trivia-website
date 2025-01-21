@@ -1,9 +1,21 @@
 <div class="center-col">
     <h1>Select a Category</h1>
-    <button 
-    class="button"
-    *ngFor="let item of categories" [routerLink]="'/questions/' + item.title"
+    <div
+    *ngFor="let item of categories"
     >
-        {{item.title}}
-    </button>
+        @if(isCategoryDisabled(item)){
+            <button
+            class="disabled button"
+            >
+                {{item.title}}
+            </button>
+        } @else {
+            <button
+            [routerLink]="'/questions/' + item.title"
+            class="button"
+            >
+                {{item.title}}
+            </button>
+        }
+    </div>
 </div>

@@ -11,6 +11,7 @@ export interface iQuestion{
     category?: string
     difficulty?: string
     type?: string
+    allQuestionsViewed?: boolean
 }
 
 export interface iHardcodedQuestion{

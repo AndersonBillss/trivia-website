@@ -29,7 +29,7 @@
             </button>
         </div>
 
-        <button 
+        <button *ngIf="!question.allQuestionsViewed"
         class="bottom button"
         [ngClass]="correctAnswerRevealed?'next button':'back button'"
         (click)="nextQuestion()"

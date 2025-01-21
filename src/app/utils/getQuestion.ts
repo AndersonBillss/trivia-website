@@ -40,6 +40,14 @@ function delay(ms: number): Promise<void> {
 }
 
 export function getQuestionFromHardcoded(category: string): iQuestion | null{
+    if(allQuestionsViewed(category)){
+        return {
+            question: "All questions in this category have been completed",
+            correct_answer: "OK",
+            incorrect_answers: [],
+            allQuestionsViewed: true
+        }
+    }
     let selectedCategoryQuestions: iQuestion[] = []
     for(let i=0; i<hardcodedQuestions.length; i++){
         const item: iHardcodedQuestion = hardcodedQuestions[i]
@@ -49,7 +57,14 @@ export function getQuestionFromHardcoded(category: string): iQuestion | null{
     }
 
     const random = Math.floor(Math.random()*selectedCategoryQuestions.length)
-    const question = selectedCategoryQuestions[random]
+    let question: iQuestion | null = selectedCategoryQuestions[random]
+    if(viewedQuestions.indexOf(question.question) !== -1){
+        question = getQuestionFromHardcoded(category)
+    }
+    if(!question){
+        return null
+    }
+    viewedQuestions.push(question.question)
     return question
 }
 
@@ -122,12 +137,12 @@ const hardcodedQuestions: iHardcodedQuestion[]= [
         category: "Bishopric",
         questions: [
             {
-                question: "Bishopric test question 1",
-                correct_answer: "Correct",
+                question: "What accomplishment has Bishop Anderson achieved",
+                correct_answer: "Living in all five burroughs of New York City",
                 incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
+                    "Collecting all five infinity stones",
+                    "Met the last five prophets of the church",
+                    "Spent five years working as a subway employee",
                 ]
             },
             {
@@ -151,3 +166,25 @@ const hardcodedQuestions: iHardcodedQuestion[]= [
         ]
     },
 ]
+
+const viewedQuestions: string[] = []
+
+export function allQuestionsViewed(category: string): boolean{
+    let selectedCategoryQuestions: iQuestion[] = []
+    for(let i=0; i<hardcodedQuestions.length; i++){
+        const item: iHardcodedQuestion = hardcodedQuestions[i]
+        if(item.category === category){
+            selectedCategoryQuestions = item.questions
+        }
+    }
+
+    for(let i=0; i<selectedCategoryQuestions.length; i++){
+        const question = selectedCategoryQuestions[i]
+        // If the question is not found, return false
+        if(viewedQuestions.indexOf(question.question) === -1){
+            return false
+        }
+    }
+    // If all questions were found, return true
+    return true
+}

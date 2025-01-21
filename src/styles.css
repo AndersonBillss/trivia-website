@@ -43,3 +43,14 @@ body{
 .back.button{
     background-color: var(--lightgray);
 }
+.disabled.button{
+    background-color: var(--lightgray);
+    color: gray;
+}
+.disabled.button:hover{
+    filter: brightness(100%);
+    cursor: default;
+}
+.disabled.button:active{
+    filter: brightness(100%);
+}

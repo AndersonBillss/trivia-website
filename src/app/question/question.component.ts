@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { iCategory, iQuestion } from '../app';
 import { categoriesList } from '../utils/categoriesList';
 import { getQuestionFromApi, getQuestionFromHardcoded } from '../utils/getQuestion';
@@ -22,7 +22,8 @@ export class QuestionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -90,6 +91,9 @@ export class QuestionComponent implements OnInit {
   }
 
   guessCorrect(){
+    if(this.question?.allQuestionsViewed){
+      this.router.navigate(["categories"])
+    }
     this.correctAnswerRevealed = true
   }
 
