@@ -12,6 +12,7 @@ export interface iQuestion{
     difficulty?: string
     type?: string
     allQuestionsViewed?: boolean
+    img?: string
 }
 
 export interface iHardcodedQuestion{

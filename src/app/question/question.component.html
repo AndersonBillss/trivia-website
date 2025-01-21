@@ -6,6 +6,7 @@
     *ngIf="question"
     class="center-col"
     >
+        <img class="title-img" *ngIf="question.img" [src]="question.img"/>
         <h1 
         class="title"
         [innerHTML]="question.question"

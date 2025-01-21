@@ -1,5 +1,5 @@
-import { HttpErrorResponse } from "@angular/common/http"
 import { iHardcodedQuestion, iQuestion } from "../app"
+import { hardcodedQuestions } from "./hardCodedQuestions"
 
 const triviaApiUrl = "https://opentdb.com/api.php?amount=1&category="
 
@@ -67,105 +67,6 @@ export function getQuestionFromHardcoded(category: string): iQuestion | null{
     viewedQuestions.push(question.question)
     return question
 }
-
-const hardcodedQuestions: iHardcodedQuestion[]= [
-    {
-        category: "Church",
-        questions: [
-            {
-                question: "Church test question 1",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-            {
-                question: "Church test question 2",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-            {
-                question: "Church test question 3",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-        ]
-    },
-    {
-        category: "BYU",
-        questions: [
-            {
-                question: "BYU test question 1",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-            {
-                question: "BYU test question 2",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-            {
-                question: "BYU test question 3",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-        ]
-    },
-    {
-        category: "Bishopric",
-        questions: [
-            {
-                question: "What accomplishment has Bishop Anderson achieved",
-                correct_answer: "Living in all five burroughs of New York City",
-                incorrect_answers: [
-                    "Collecting all five infinity stones",
-                    "Met the last five prophets of the church",
-                    "Spent five years working as a subway employee",
-                ]
-            },
-            {
-                question: "Bishopric test question 2",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-            {
-                question: "Bishopric test question 3",
-                correct_answer: "Correct",
-                incorrect_answers: [
-                    "Incorrect1",
-                    "Incorrect2",
-                    "Incorrect3",
-                ]
-            },
-        ]
-    },
-]
 
 const viewedQuestions: string[] = []
 
