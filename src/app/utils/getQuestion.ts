@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from "@angular/common/http"
-import { iQuestion } from "../app"
+import { iHardcodedQuestion, iQuestion } from "../app"
 
 const triviaApiUrl = "https://opentdb.com/api.php?amount=1&category="
 
@@ -40,5 +40,114 @@ function delay(ms: number): Promise<void> {
 }
 
 export function getQuestionFromHardcoded(category: string): iQuestion | null{
-    return null
+    let selectedCategoryQuestions: iQuestion[] = []
+    for(let i=0; i<hardcodedQuestions.length; i++){
+        const item: iHardcodedQuestion = hardcodedQuestions[i]
+        if(item.category === category){
+            selectedCategoryQuestions = item.questions
+        }
+    }
+
+    const random = Math.floor(Math.random()*selectedCategoryQuestions.length)
+    const question = selectedCategoryQuestions[random]
+    return question
 }
+
+const hardcodedQuestions: iHardcodedQuestion[]= [
+    {
+        category: "Church",
+        questions: [
+            {
+                question: "Church test question 1",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+            {
+                question: "Church test question 2",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+            {
+                question: "Church test question 3",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+        ]
+    },
+    {
+        category: "BYU",
+        questions: [
+            {
+                question: "BYU test question 1",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+            {
+                question: "BYU test question 2",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+            {
+                question: "BYU test question 3",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+        ]
+    },
+    {
+        category: "Bishopric",
+        questions: [
+            {
+                question: "Bishopric test question 1",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+            {
+                question: "Bishopric test question 2",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+            {
+                question: "Bishopric test question 3",
+                correct_answer: "Correct",
+                incorrect_answers: [
+                    "Incorrect1",
+                    "Incorrect2",
+                    "Incorrect3",
+                ]
+            },
+        ]
+    },
+]

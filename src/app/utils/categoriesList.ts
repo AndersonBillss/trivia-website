@@ -2,7 +2,17 @@ import { iCategory } from '../app'
 
 export const categoriesList: iCategory[] =[
     {
-      title: "Science and Nature",
+      title: "Church",
+      questionType: "Hardcoded",
+      categoryId: 'Church'
+    },
+    {
+      title: "Pop culture",
+      questionType: "API",
+      categoryId: ["11","13","14","16"]
+    },
+    {
+      title: "Science",
       questionType: "API",
       categoryId: '17'
     },
@@ -12,9 +22,9 @@ export const categoriesList: iCategory[] =[
       categoryId: '23'
     },
     {
-      title: "Geography",
-      questionType: "API",
-      categoryId: '22'
+      title: "BYU",
+      questionType: "Hardcoded",
+      categoryId: 'BYU'
     },
     {
       title: "Sports",
@@ -22,18 +32,18 @@ export const categoriesList: iCategory[] =[
       categoryId:"21"
     },
     {
-      title: "Culture",
+      title: "Music",
       questionType: "API",
-      categoryId: ["11","12","13","14","16"]
+      categoryId: "12"
     },
     {
-      title: "BYU",
+      title: "Bishopric",
       questionType: "Hardcoded",
-      categoryId: ''
+      categoryId: 'Bishopric'
     },
     {
-      title: "Test",
-      questionType: "Hardcoded",
-      categoryId: ''
+      title: "Geography",
+      questionType: "API",
+      categoryId: '22'
     },
   ]
