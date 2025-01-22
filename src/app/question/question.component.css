@@ -1,6 +1,9 @@
 .correct-revealed{
     background-color: var(--correct-color);
 }
+.incorrect-revealed{
+    background-color: var(--incorrect-color);
+}
 
 .bottom.button{
     margin-top: 15px;

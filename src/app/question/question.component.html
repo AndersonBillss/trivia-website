@@ -24,7 +24,8 @@
             </button>
             <button 
             class="button"
-            *ngIf="index !== 0" (click)="correctAnswerRevealed ? '' : guessIncorrect()"
+            [ngClass]="questionGuessed(index-1)?'incorrect-revealed':''"
+            *ngIf="index !== 0" (click)="correctAnswerRevealed ? '' : guessIncorrect(index-1)"
             [innerHtml]="question.incorrect_answers[index-1]"
             >
             </button>

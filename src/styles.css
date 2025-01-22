@@ -6,6 +6,7 @@
     --secondary-dark: orange;
 
     --correct-color: rgb(122, 222, 122);
+    --incorrect-color: rgb(222, 122, 122);
 
     --lightgray: rgb(219, 222, 227);
 }
