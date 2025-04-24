@@ -19,6 +19,7 @@ export class QuestionComponent implements OnInit {
   public category: iCategory | null = null
   public question: iQuestion | null = null
   public questionOrder: number[] = []
+  public selectedQuestions: number[] = []
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +48,7 @@ export class QuestionComponent implements OnInit {
   }
 
   async getQuestion(){
+    this.selectedQuestions = []
     if(!this.category){
       return
     }
@@ -97,8 +99,8 @@ export class QuestionComponent implements OnInit {
     this.correctAnswerRevealed = true
   }
 
-  guessIncorrect(){
-    this.correctAnswerRevealed = true
+  guessIncorrect(index: number){
+    this.selectedQuestions.push(index)
   }
 
   nextQuestion(){
@@ -109,5 +111,9 @@ export class QuestionComponent implements OnInit {
 
   goBack(){
     this.location.back()
+  }
+
+  questionGuessed(index: number): boolean{
+    return this.selectedQuestions.indexOf(index) !== -1
   }
 }
